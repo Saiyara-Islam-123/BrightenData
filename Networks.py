@@ -16,15 +16,16 @@ class VectorCNN(nn.Module):
                                           nn.ReLU(),
                                           nn.Flatten(),
                                           nn.Linear(helper(vec_input_size), vec_output_size)
-                                        ) #I'll assume it's classification?
+        )
 
     def forward(self, x):
         return self.conv_network(x)
 
 class RecurrentNetwork(nn.Module):
     def __init__(self,input_size, hidden_size, num_layers, nonlinearity, batch_size, output_size):
+        super(RecurrentNetwork, self).__init__()
         self.rnn = nn.RNN(input_size, hidden_size, num_layers, nonlinearity, batch_first=True)
-        self.linear = nn.Linear(num_layers * hidden_size * input_size*batch_size, output_size)
+
 
     def forward(self, x):
         output, final_hidden_state =  self.rnn(x)
