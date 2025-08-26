@@ -25,8 +25,8 @@ class RecurrentNetwork(nn.Module):
     def __init__(self,input_size, hidden_size, num_layers, nonlinearity, batch_size, output_size):
         super(RecurrentNetwork, self).__init__()
         self.rnn = nn.RNN(input_size, hidden_size, num_layers, nonlinearity, batch_first=True)
-
+        self.last = nn.Tanh()
 
     def forward(self, x):
         output, final_hidden_state =  self.rnn(x)
-        return output
+        return self.last(output)

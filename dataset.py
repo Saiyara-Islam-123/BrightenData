@@ -2,7 +2,7 @@ from torch.utils.data import Dataset, DataLoader, random_split
 import numpy as np
 import pandas as pd
 import torch
-torch.random.manual_seed(10)
+
 
 def get_dict():
 
