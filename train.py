@@ -9,6 +9,7 @@ def train_rnn(dataloader, lr, epochs):
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=lr, weight_decay=0.0001)
     model.train()
+    batch = 0
 
     for epoch in range(epochs):
         for x_seq, y_seq in dataloader:
@@ -19,6 +20,8 @@ def train_rnn(dataloader, lr, epochs):
             loss.backward()
             optimizer.step()
             print(epoch, loss.item())
+            batch += 1
+    torch.save(model.state_dict(), f"weights/{lr}/final_weights.pth")
 
 
 
